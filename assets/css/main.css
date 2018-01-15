@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,600');
+
+body {
+  background-color: #262626 ;
+  color: #fff ;
+  font-family: 'Montserrat' ;
+}
+
+.container-fluid {
+  margin-top: 5%;
+}

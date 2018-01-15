@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>Hamowanie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+    }
+  </script>
+  <!-- jquery -->
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <!-- jquery -->
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- bootstrap js -->
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <form id="Oblicz">
+
+          <div class="form-group">
+            <label for="v0">Prędkość Początkowa: </label>
+            <input type="number" id="v0" class="form-control" min="1" step="0.1" value="30">
+          </div>
+
+          <div class="form-group">
+            <label for="g0">Przyspieszenie grawitacyjne: </label>
+            <input type="number" id="g0" class="form-control" min="8" max="20" step="0.01" value="9.81">
+          </div>
+
+          <div class="form-group">
+            <label for="mi">Rodzaj nawierzchni: </label>
+            <select id="mi" class="form-control">
+      		<option value="0.9">Betonowa sucha</option>
+      		<option value="0.7">Betonowa mokra</option>
+      		<option value="0.75">Asfaltowa sucha</option>
+          <option value="0.45">Asfaltowa mokra</option>
+          <option value="0.65">Kostka bazaltowa sucha</option>
+          <option value="0.4">Kostka bazaltowa mokra</option>
+          <option value="0.55">Droga gruntowa sucha</option>
+          <option value="0.35">Droga gruntowa mokra</option>
+          <option value="0.25">Droga zaśnieżona</option>
+          <option value="0.1">Droga oblodzona</option>
+      	</select>
+          </div>
+
+          <div class="form-group">
+            <label for="t_r">Czas reakcji: </label>
+            <input type="number" id="t_r" class="form-control" value="0.75" disabled>
+          </div>
+
+          <div class="form-group">
+            <label for="droga">Droga hamowania: </label>
+            <input type="number" id="droga" class="form-control" value="0" disabled>
+          </div>
+
+          <button class="btn btn-primary mb-2">Oblicz</button>
+          <button class="btn btn-danger mb-2" id="Clear">Wyczyść</button>
+        </form>
+      </div>
+      <!-- col-md-4 -->
+
+
+
+      <div class="col-md-8">
+        <canvas id="wykres1"></canvas>
+
+        <canvas id="wykres2"></canvas>
+      </div>
+      <!-- col-md-8 -->
+    </div>
+    <!-- row -->
+  </div>
+  <!-- container -->
+
+
+
+
+
+  <script type="text/javascript" src="./wykresy.js"></script>
+  <script type="text/javascript" src="./index.js"></script>
+  <script>
+    if (window.module) module = window.module;
+  </script>
+</body>
+
+</html>
