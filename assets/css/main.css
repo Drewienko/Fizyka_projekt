@@ -8,4 +8,10 @@ body {
 
 .container-fluid {
   margin-top: 5%;
+  display: table;
+  box-sizing: border-box;
+}
+
+html, body, .container-fluid {
+  height: 100%;
 }

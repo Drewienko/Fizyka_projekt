@@ -1,4 +1,5 @@
 const electron = require('electron');
+var fs = require('fs');
 //deklaracja tablic na dane wykresow
 var data_wykres2 = [];
 var data_wykres1 = [];
@@ -14,7 +15,7 @@ Oblicz.addEventListener('submit', function(event) {
   var g0 = parseFloat(document.getElementById('g0').value);
   var v0 = parseFloat(document.getElementById('v0').value);
   var mi = parseFloat(document.getElementById('mi').value);
-  var t_r = parseFloat(document.getElementById('t_r').value);
+  var t_r = parseFloat(document.getElementById('t_k').value) + parseFloat(document.getElementById('t_u').value);
   //zamiana k\h na m\s i obliczenie drogi
   v0 /= 3.6;
   var s0 = v0 * (v0 / (2 * g0 * mi) + t_r);
@@ -69,9 +70,23 @@ Clear.addEventListener('click', function(event) {
   event.preventDefault(); //Wylacza odswiezanie po wcisnieciu przycisku
 
   document.getElementById('v0').value = '30';
-  document.getElementById('g0').value = "9.81";
+  document.getElementById('g0').value = '9.81';
   document.getElementById('droga').value = '0';
 
   rmData(wykres1, data_wykres1);
   rmData(wykres2, data_wykres2);
 })
+
+
+// const Save = document.getElementById('Save');
+// Save.addEventListener('click', function(event) {
+//   event.preventDefault(); //Wylacza odswiezanie po wcisnieciu przycisku
+//   var selected_res = $('#selected_res option:selected').data('res');
+//
+//   var t = wykres1.toBase64Image();
+//   document.getElementById('test').src = t;
+//
+//   var url = document.getElementById('test').src.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
+//   window.open(url);
+//   console.log(selected_res);
+// });

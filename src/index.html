@@ -23,14 +23,42 @@
 </head>
 
 <body>
+<!-- Modal -->
+<!-- <div class="modal fade" id="save_modal" tabindex="-1" role="dialog" aria-labelledby="saveModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="saveModalTitle">Zapis do pliku</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Zamknij">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="res" class="col-sm-2 col-form-label">Rozdzielczość: </label>
+          <select id="selected_res" class="form-control">
+            <option data-res='{"w":"800","h":"600"}'>1280x720</option>
+            <option data-res='{"w":"1280","h":"720"}'>1280x720</option>
+            <option data-res='{"w":"1920","h":"1080"}'>1920x1080</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+        <button type="button" class="btn btn-primary" id="Save">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- Modal end -->
 
   <div class="container-fluid">
     <div class="row justify-content-md-center">
-      <div class="col-md-4">
+      <div class="col-sm-4 no-float">
         <form id="Oblicz">
 
           <div class="form-group">
-            <label for="v0">Prędkość Początkowa: </label>
+            <label for="v0">Prędkość Początkowa (w km\h): </label>
             <input type="number" id="v0" class="form-control" min="1" step="0.1" value="30">
           </div>
 
@@ -56,8 +84,13 @@
           </div>
 
           <div class="form-group">
-            <label for="t_r">Czas reakcji: </label>
-            <input type="number" id="t_r" class="form-control" value="0.75" disabled>
+            <label for="t_r">Czas reakcji kierowcy(w sekundach: </label>
+            <input type="number" id="t_k" class="form-control" value="0.254" disabled>
+          </div>
+
+          <div class="form-group">
+            <label for="t_r">Czas reakcji ukladu hamulcowego(w sekundach): </label>
+            <input type="number" id="t_u" class="form-control" value="0.5" disabled>
           </div>
 
           <div class="form-group">
@@ -67,26 +100,26 @@
 
           <button class="btn btn-primary mb-2">Oblicz</button>
           <button class="btn btn-danger mb-2" id="Clear">Wyczyść</button>
+          <!-- <button data-toggle="modal" data-target="#save_modal" class="btn btn-success mb-2" id="save_modal">Zapisz</button> -->
+          <!-- <button type="button" class="btn btn-success mb-2" id="Save">Zapisz</button> -->
         </form>
       </div>
       <!-- col-md-4 -->
 
 
 
-      <div class="col-md-8">
-        <canvas id="wykres1"></canvas>
-
-        <canvas id="wykres2"></canvas>
+      <div class="col-sm-8 no-float">
+          <canvas id="wykres1"></canvas>
+          <canvas id="wykres2"></canvas>
       </div>
       <!-- col-md-8 -->
     </div>
     <!-- row -->
   </div>
   <!-- container -->
-
-
-
-
+  <!-- <a download="test.jpg" href="C:\Electron\Projects\Fizyka\Projekt_Fizyka" title="ImageName">
+    <img id="test"></img>
+  </a> -->
 
   <script type="text/javascript" src="./wykresy.js"></script>
   <script type="text/javascript" src="./index.js"></script>
