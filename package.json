@@ -2,7 +2,7 @@
   "name": "Projekt_Fizyka",
   "productName": "Projekt_Fizyka",
   "version": "0.5.0",
-  "description": "Oblicza droge hamowania (bez wykresow)",
+  "description": "Oblicza droge hamowania",
   "main": "main.js",
   "build": {
     "appId": "com.example.app",
