@@ -1,4 +1,4 @@
-//Domyslny plik konfiguracyjny electrona, wylaczylem tylko menu i console
+//Domyslny plik konfiguracyjny electron, wylaczylem tylko menu i console
 const electron = require('electron')
 
 const app = electron.app

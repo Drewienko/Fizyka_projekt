@@ -74,26 +74,24 @@ Oblicz.addEventListener('submit', function(event) {
 const Clear = document.getElementById('Clear');
 Clear.addEventListener('click', function(event) {
   event.preventDefault(); //Wylacza odswiezanie po wcisnieciu przycisku
-
+  //Wpisanie domyślnych wartości do formularza
   document.getElementById('v0').value = '30';
   document.getElementById('g0').value = '9.81';
   document.getElementById('droga').value = '0';
   document.getElementById('t_k').value = '0.254';
   document.getElementById('t_u').value = '0.5';
-
+  //wyczyszczenie wykresow
   rmData(1, data_wykres1);
   rmData(2, data_wykres2);
-})
-
+});
+// funkcje tworzace wykresy do zapisu
 const Resolution = document.getElementById('selected_res');
-//console.log(Druk);
 Resolution.addEventListener('change', function(event) {
     //console.log('Druk');
       document.getElementById('saveModalTitle').removeChild(document.getElementById('wykres_hidden'));
 
     hidden()
 });
-
 const Typ = document.getElementById('typ');
 Typ.addEventListener('change', function(event) {
     console.log(Typ);
@@ -107,22 +105,12 @@ const Save = document.getElementById('Save');
 Save.addEventListener('click', function(event) {
   event.preventDefault(); //Wylacza odswiezanie po wcisnieciu przycisku
 
-
-  //console.log(charts[3]);
   if (document.getElementById('predczas').checked) {
     var t = charts[3].toBase64Image();
   } else {
     var t = charts[4].toBase64Image();
   }
 
-  //console.log(t);
-  //document.getElementById('test').src = t;
   var url = t.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
-  //console.log(BrowserWindow);
   BrowserWindow.loadURL(url);
-  //console.log(selected_res);
-  //wykres1_h = document.getElementById('wykres1_hidden');
-  //document.getElementById('saveModalTitle').removeChild(wykres1_h);
-  //charts[3].destroy();
-  // charts[4].destroy();
 });

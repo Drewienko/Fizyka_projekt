@@ -26,3 +26,8 @@ form {
 .form-check {
   color: black;
 }
+
+.row {
+  display: flex;
+  align-items: center
+}

@@ -82,7 +82,7 @@ function rmData(n, data) {
   }
   charts[n].update();
 }
-
+// funkcja tworzaca wykresy do zapisu
 function hidden() {
   var selected_res = $('#selected_res option:selected').data('res');
   var wykres_h = document.createElement("canvas");
