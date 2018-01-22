@@ -1,6 +1,7 @@
 const electron = require('electron');
 var fs = require('fs');
-const BrowserWindow = require('electron').remote.getCurrentWindow();
+const {dialog} = require('electron').remote
+//const BrowserWindow = require('electron').remote;//.getCurrentWindow();
 //rysowanie zerowych wykresow
 make(1, 'wykres1', 'Zależność prędkości od czasu', 'Prędkość',true);
 make(2, 'wykres2', 'Zależność drogi od czasu', 'Droga',true);
@@ -87,14 +88,14 @@ Clear.addEventListener('click', function(event) {
 // funkcje tworzace wykresy do zapisu
 const Resolution = document.getElementById('selected_res');
 Resolution.addEventListener('change', function(event) {
-    //console.log('Druk');
+    
       document.getElementById('saveModalTitle').removeChild(document.getElementById('wykres_hidden'));
 
     hidden()
 });
 const Typ = document.getElementById('typ');
 Typ.addEventListener('change', function(event) {
-    console.log(Typ);
+
       document.getElementById('saveModalTitle').removeChild(document.getElementById('wykres_hidden'));
 
     hidden()
@@ -111,6 +112,19 @@ Save.addEventListener('click', function(event) {
     var t = charts[4].toBase64Image();
   }
 
-  var url = t.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
-  BrowserWindow.loadURL(url);
+  var url = t.replace(/^data:image\/png;base64,/,"");
+  dialog.showSaveDialog({defaultPath:fileName , filters: [
+
+     { name: 'Obrazy', extensions: ['png'] }
+
+    ]}, function (fileName) {
+
+    if (fileName === undefined) return;
+
+    fs.writeFile(fileName, url, 'base64', function(err) {
+        console.log(err);
+    });
+
+  });
+
 });

@@ -1,5 +1,6 @@
 var Chart = require('chart.js');
-var charts =[]
+var charts =[];
+var fileName;
 //wypelnianie canvas tlem
 Chart.plugins.register({
   beforeDraw: function(chartInstance) {
@@ -91,14 +92,16 @@ function hidden() {
   wykres_h.setAttribute('height', selected_res.h);
   wykres_h.setAttribute('hidden', true)
   document.getElementById('saveModalTitle').appendChild(wykres_h);
-
+  fileName = 'wykres'
   if (document.getElementById('predczas').checked) {
     make(3, 'wykres_hidden', 'Zależność prędkości od czasu', 'Prędkość',false);
     rmData(3, data_wykres1);
     addData(3, data_wykres1);
+    fileName += ' pred czas(' + selected_res.h + 'x' +selected_res.w + ').png';
   } else {
     make(4, 'wykres_hidden', 'Zależność drogi od czasu', 'Droga',false);
     rmData(4, data_wykres2);
     addData(4, data_wykres2);
+    fileName += ' droga czas(' + selected_res.h + 'x' +selected_res.w + ').png';
   }
 }
