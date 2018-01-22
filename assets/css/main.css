@@ -7,11 +7,22 @@ body {
 }
 
 .container-fluid {
-  margin-top: 5%;
   display: table;
   box-sizing: border-box;
 }
 
 html, body, .container-fluid {
-  height: 100%;
+  max-height: 100% ;
+}
+
+#wykres1, #wykres2 {
+  max-height: 50vh;
+}
+
+form {
+  max-height: 100vh;
+}
+
+.form-check {
+  color: black;
 }

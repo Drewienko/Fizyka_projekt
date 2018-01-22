@@ -1,114 +1,104 @@
 var Chart = require('chart.js');
-//deklarowanie miejsca na stronie pod wykresy
-var ctx1 = document.getElementById('wykres1').getContext('2d');
-var ctx2 = document.getElementById('wykres2').getContext('2d');
-
-//rysowanie 1 wykresu
-var wykres1 = new Chart(ctx1, {
-
-  type: 'scatter',
-
-
-
-  data: {
-
-    datasets: [{
-      showLine: true,
-      label: 'Zależność prędkości od czasu',
-      lineTension: 0,
-      borderColor: 'rgb(255, 99, 132)',
-      pointRadius: 0,
-      data: [{
-        x: 0,
-        y: 0
-      }],
-    }]
-  },
-
-
-
-  options: {
-    responsive: true,
-
-    tooltips: {
-      mode: 'point'
-    },
-    scales: {
-      xAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-          labelString: 'Czas'
-        },
-        ticks: {
-          beginAtZero: true
-        }
-      }],
-      yAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-          labelString: 'Prędkość'
-        }
-      }]
-    }
+var charts =[]
+//wypelnianie canvas tlem
+Chart.plugins.register({
+  beforeDraw: function(chartInstance) {
+    var ctx = chartInstance.chart.ctx;
+    ctx.fillStyle = "#262626";
+    ctx.fillRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
   }
 });
-//rysowanie 2 wykresu
-var wykres2 = new Chart(ctx2, {
-  type: 'scatter',
+// funkcja tworzaca wykres
+function make(n,canvas,nazwa,nazwa_y,responsive) {
+  var ctx = document.getElementById(canvas).getContext('2d');
 
-  data: {
+  charts[n] = new Chart(ctx, {
 
-    datasets: [{
-      showLine: true,
-      label: 'Zależność drogi od czasu',
-      lineTension: 0,
-      borderColor: 'rgb(255, 99, 132)',
-      pointRadius: 0,
-      data: []
-    }]
-  },
+    type: 'scatter',
 
-  options: {
-    responsive: true,
-    tooltips: {
-      mode: 'point'
-    },
-    scales: {
-      xAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-          labelString: 'Czas',
-        },
 
-        ticks: {
-          beginAtZero: true
-        }
-      }],
 
-      yAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-          labelString: 'Droga'
-        }
+
+    data: {
+
+
+      datasets: [{
+
+        showLine: true,
+        label: nazwa,
+        lineTension: 0,
+        borderColor: 'rgb(255, 99, 132)',
+        pointRadius: 0,
+        data: [{
+          x: 0,
+          y: 0
+        }],
       }]
+    },
+
+
+
+    options: {
+
+      responsive: responsive,
+
+      tooltips: {
+        mode: 'point'
+      },
+      scales: {
+        xAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Czas'
+          },
+          ticks: {
+            beginAtZero: true
+          }
+        }],
+        yAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: nazwa_y
+          }
+        }]
+      }
     }
-  }
-});
+  });
+}
+
 // funkcja dodajaca nowe dane do wykresu
-function addData(chart, data) {
+function addData(n, data) {
   for (let i = 0; i < data.length; i++) {
-    chart.data.datasets[0].data.push(data[i]);
+    charts[n].data.datasets[0].data.push(data[i]);
   }
-  chart.update();
+  charts[n].update();
 }
 // funkcja czyszczaca dane z wykresu
-function rmData(chart, data) {
+function rmData(n, data) {
   for (let i = 0; i < data.length; i++) {
-    chart.data.datasets[0].data.pop();
+    charts[n].data.datasets[0].data.pop();
   }
-  chart.update();
+  charts[n].update();
+}
+
+function hidden() {
+  var selected_res = $('#selected_res option:selected').data('res');
+  var wykres_h = document.createElement("canvas");
+  wykres_h.setAttribute('id', 'wykres_hidden');
+  wykres_h.setAttribute('width', selected_res.w);
+  wykres_h.setAttribute('height', selected_res.h);
+  wykres_h.setAttribute('hidden', true)
+  document.getElementById('saveModalTitle').appendChild(wykres_h);
+
+  if (document.getElementById('predczas').checked) {
+    make(3, 'wykres_hidden', 'Zależność prędkości od czasu', 'Prędkość',false);
+    rmData(3, data_wykres1);
+    addData(3, data_wykres1);
+  } else {
+    make(4, 'wykres_hidden', 'Zależność drogi od czasu', 'Droga',false);
+    rmData(4, data_wykres2);
+    addData(4, data_wykres2);
+  }
 }
