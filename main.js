@@ -24,7 +24,7 @@ function createWindow () {
   }))
 
 
-   mainWindow.webContents.openDevTools()
+   //mainWindow.webContents.openDevTools()
 
 
   mainWindow.on('closed', function () {
@@ -32,7 +32,7 @@ function createWindow () {
     mainWindow = null
   })
 
-    //Menu.setApplicationMenu(null)
+    Menu.setApplicationMenu(null)
 }
 
 

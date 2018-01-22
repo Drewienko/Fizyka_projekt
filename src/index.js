@@ -54,8 +54,8 @@ Oblicz.addEventListener('submit', function(event) {
     x: t_r.toFixed(2),
     y: (t_r * v0).toFixed(2)
   };
-  for (let i = 1; i <= 100; i++) {
-    let x_ = ((t - t_r) / 100) * i;
+  for (let i = 1; i <= 1000; i++) {
+    let x_ = ((t - t_r) / 1000) * i;
     let y_ = (v0 * x_) - (a * x_ * x_ / 2) + t_r * v0;
     x_ += t_r;
     data_wykres2[i + 1] = {
@@ -88,7 +88,7 @@ Clear.addEventListener('click', function(event) {
 // funkcje tworzace wykresy do zapisu
 const Resolution = document.getElementById('selected_res');
 Resolution.addEventListener('change', function(event) {
-    
+
       document.getElementById('saveModalTitle').removeChild(document.getElementById('wykres_hidden'));
 
     hidden()
