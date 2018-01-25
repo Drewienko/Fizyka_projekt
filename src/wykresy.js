@@ -12,19 +12,10 @@ Chart.plugins.register({
 // funkcja tworzaca wykres
 function make(n,canvas,nazwa,nazwa_y,responsive) {
   var ctx = document.getElementById(canvas).getContext('2d');
-
   charts[n] = new Chart(ctx, {
-
     type: 'scatter',
-
-
-
-
     data: {
-
-
       datasets: [{
-
         showLine: true,
         label: nazwa,
         lineTension: 0,
@@ -36,13 +27,8 @@ function make(n,canvas,nazwa,nazwa_y,responsive) {
         }],
       }]
     },
-
-
-
     options: {
-
       responsive: responsive,
-
       tooltips: {
         mode: 'point'
       },
@@ -90,18 +76,17 @@ function hidden() {
   wykres_h.setAttribute('id', 'wykres_hidden');
   wykres_h.setAttribute('width', selected_res.w);
   wykres_h.setAttribute('height', selected_res.h);
-  wykres_h.setAttribute('hidden', true)
+  wykres_h.setAttribute('hidden', true);
   document.getElementById('saveModalTitle').appendChild(wykres_h);
-  fileName = 'wykres'
   if (document.getElementById('predczas').checked) {
     make(3, 'wykres_hidden', 'Zależność prędkości od czasu', 'Prędkość',false);
     rmData(3, data_wykres1);
     addData(3, data_wykres1);
-    fileName += ' pred czas(' + selected_res.h + 'x' +selected_res.w + ').png';
+    fileName = 'Wykres zależności prędkości od czasu(' + selected_res.w + 'x' +selected_res.h + ').png';
   } else {
     make(4, 'wykres_hidden', 'Zależność drogi od czasu', 'Droga',false);
     rmData(4, data_wykres2);
     addData(4, data_wykres2);
-    fileName += ' droga czas(' + selected_res.h + 'x' +selected_res.w + ').png';
+    fileName = 'Wykres zależności drogi od czasu(' + selected_res.w + 'x' +selected_res.h + ').png';
   }
 }

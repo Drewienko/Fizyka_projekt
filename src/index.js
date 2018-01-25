@@ -35,12 +35,12 @@ Oblicz.addEventListener('submit', function(event) {
   v0 *= 3.6;
   data_wykres1 = [{
     x: 0,
-    y: v0.toFixed(2)
+    y: v0.toFixed(3)
   }, {
-    x: t_r.toFixed(2),
-    y: v0.toFixed(2)
+    x: t_r.toFixed(3),
+    y: v0.toFixed(3)
   }, {
-    x: t.toFixed(2),
+    x: t.toFixed(3),
     y: 0
   }];
   v0 /= 3.6;
@@ -51,16 +51,16 @@ Oblicz.addEventListener('submit', function(event) {
     y: 0
   };
   data_wykres2[1] = {
-    x: t_r.toFixed(2),
-    y: (t_r * v0).toFixed(2)
+    x: t_r.toFixed(3),
+    y: (t_r * v0).toFixed(3)
   };
   for (let i = 1; i <= 1000; i++) {
     let x_ = ((t - t_r) / 1000) * i;
     let y_ = (v0 * x_) - (a * x_ * x_ / 2) + t_r * v0;
     x_ += t_r;
     data_wykres2[i + 1] = {
-      x: x_.toFixed(2),
-      y: y_.toFixed(2)
+      x: x_.toFixed(3),
+      y: y_.toFixed(3)
     };
   }
   //odswiezanie wykresow
